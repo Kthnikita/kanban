@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Addtaskmodal from './Addtaskmodal';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "@/Components/ui/Switch";
 import { Sun, Moon } from 'phosphor-react';
 import { handeltheme } from './taskslice';
 import { useEffect } from 'react';
