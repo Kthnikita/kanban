@@ -1,13 +1,18 @@
 import { Draggable, Droppable } from '@hello-pangea/dnd';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Editmodal from './Editmodal';
 import { NotePencil } from 'phosphor-react';
-
+import {FlowerLotus} from 'phosphor-react'
+import { Trash } from 'phosphor-react';
+import { deletetask } from './taskslice';
 function Column({ colkey, modal, edit }) {
   const task = useSelector(store => store.app.column[colkey]);
-  const isdark = useSelector(store => store.app.isdark); // false = dark mode
-
+  const isdark = useSelector(store => store.app.isdark);
+  const dispatch=useDispatch();
+  function remove(id){
+   dispatch(deletetask({colkey,taskid:id}))
+  }
   return (
     <div
       className={`min-w-[250px] sm:w-64 rounded-lg shadow-md p-3 sm:p-4 mt-4 sm:mt-6 border
@@ -19,11 +24,7 @@ function Column({ colkey, modal, edit }) {
       `}
     >
       <div className="flex items-center gap-2 mb-3 sm:mb-4">
-        <div
-          className={`h-3 w-3 sm:h-4 sm:w-4 rounded-full ${
-            isdark ? 'bg-purple-600' : 'bg-purple-500'
-          }`}
-        ></div>
+       <FlowerLotus size={32} />
         <h2
           className={`text-base sm:text-lg font-semibold truncate ${
             isdark ? 'text-gray-700' : 'text-white'
@@ -85,6 +86,15 @@ function Column({ colkey, modal, edit }) {
                           >
                             <NotePencil size={20} weight="bold" />
                           </button>
+                          <button onClick={()=>{remove(key.id)}}
+                            className={`focus:outline-none transition-colors duration-200 ${
+                              isdark
+                                ? 'text-gray-500 hover:text-pink-500'
+                                : 'text-gray-300 hover:text-pink-400'
+                            }`}
+                            aria-label="Delete Task"
+                            title="Delete Task"
+                            ><Trash size={20} weight="bold" /></button>
                         </div>
                         <p
                           className={`text-xs sm:text-sm ${

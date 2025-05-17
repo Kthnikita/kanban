@@ -7,7 +7,7 @@ import { handeldragend } from './taskslice';
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const theme = useSelector(store => store.app.isdark); // true = light, false = dark
+  const theme = useSelector(store => store.app.isdark); 
   const cols = useSelector(state => state.app.column);
   const colval = Object.keys(cols);
   const [edit, setEditTask] = useState(null);
@@ -22,7 +22,7 @@ function Dashboard() {
   }
 
   return (
-    <div className={`w-full h-full overflow-x-auto ${theme ? 'bg-white text-black' : 'bg-[#1a1a1a] text-white'}`}>
+    <div className={`w-full h-full overflow-x-auto ${theme ? 'bg-[#F5ECE0] text-black' : 'bg-[#1a1a1a] text-white'}`}>
       <div className="flex gap-6 sm:gap-10 px-4 sm:px-10 py-4 min-w-max">
         <DragDropContext onDragEnd={handeldrop}>
           {colval.map(e => (

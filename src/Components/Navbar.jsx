@@ -6,7 +6,7 @@ import { Sun, Moon } from 'phosphor-react';
 import { handeltheme } from './taskslice';
 import { useEffect } from 'react';
 function Navbar() {
-  const [taskmodal, settaskmodal] = useState(false);// only for icon toggle
+  const [taskmodal, settaskmodal] = useState(false);
   const theme=useSelector(store=>store.app.isdark)
   const check = useSelector(store => store.app);
   const isDisabled = !check.column || Object.keys(check.column).length === 0;
@@ -26,7 +26,7 @@ function Navbar() {
   }
 
   return (
-    <div className={`flex h-20 w-auto items-center gap-2 px-10 ${darkMode?'bg-white dark:bg-gray-900  text-black dark:text-white':'bg-[#222222] dark:bg-gray-900  text-white dark:text-black'}`}>
+    <div className={`flex h-20 w-auto items-center gap-2 px-10 sticky top-0 z-30  ${darkMode?'bg-white dark:bg-gray-900  text-black dark:text-white':'bg-[#222222] dark:bg-gray-900  text-white dark:text-black'}`}>
       {taskmodal && <Addtaskmodal toggel={toggel} />}
       <div className='flex gap-1'>
         <div className='h-8 w-2 rounded-sm bg-[#C599B6] border border-white'></div>
@@ -37,7 +37,7 @@ function Navbar() {
       <h2 className='text-2xl font-bold'>Kanban</h2>
 
       <div className='flex ml-auto gap-4 items-center'>
-        {/* Moon - Switch - Sun Layout */}
+        
         <div className="flex items-center gap-2">
           <Moon size={20} weight="fill" className={darkMode ? 'text-gray-400' : 'text-black-600'} />
           <Switch
@@ -48,7 +48,7 @@ function Navbar() {
           <Sun size={20} weight="fill" className={darkMode ? 'text-yellow-400' : 'text-gray-400'} />
         </div>
 
-        {/* Add Task Button */}
+    
         <button
           disabled={isDisabled}
           className={`h-8 w-28 rounded-lg m-3 text-white border border-white 

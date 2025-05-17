@@ -34,9 +34,13 @@ const taskslice=createSlice({
         },
         handeltheme:(state,action)=>{
             state.isdark=action.payload;
+        },
+        deletetask:(state,action)=>{
+            const {colkey,taskid}=action.payload;
+            state.column[colkey]=state.column[colkey].filter(task=>task.id!==taskid);
         }
     }
 }
 )
-export const{addcolumn,addtask,handeldragend,edittask,handeltheme}=taskslice.actions;
+export const{addcolumn,addtask,handeldragend,edittask,handeltheme,deletetask}=taskslice.actions;
 export default taskslice.reducer;

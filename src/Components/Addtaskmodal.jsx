@@ -6,7 +6,7 @@ function Addtaskmodal({ toggel }) {
   const cols = useSelector(store => store.app.column);
   const col = Object.keys(cols);
   const initial = col.length === 0 ? '' : col[0];
-  const theme = useSelector(store => store.app.isdark); // true = light, false = dark
+  const theme = useSelector(store => store.app.isdark); 
 
   const [tasktitle, setTaskTitle] = useState('');
   const [description, setDescription] = useState('');

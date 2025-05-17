@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { edittask } from './taskslice';
 
 function Editmodal({ editkey, modal, col }) {
-  const theme = useSelector(store => store.app.isdark); // true = light, false = dark
+  const theme = useSelector(store => store.app.isdark); 
 
   const [tasktitle, setTaskTitle] = useState(editkey.tasktitle || "");
   const [description, setDescription] = useState(editkey.description || "");
-  // Column state is unused for now, but you can add functionality if needed
-  // const [column, setColumn] = useState(col);
+ 
 
   const dispatch = useDispatch();
 
@@ -25,8 +24,8 @@ function Editmodal({ editkey, modal, col }) {
       <div
         className={`w-[400px] rounded-xl shadow-xl p-6 relative
           ${theme 
-            ? 'bg-gradient-to-br from-pink-100 to-[#FAD0C4] text-gray-800'  // light mode colors
-            : 'bg-gradient-to-br from-gray-800 to-gray-900 text-white'       // dark mode colors
+            ? 'bg-gradient-to-br from-pink-100 to-[#FAD0C4] text-gray-800'  
+            : 'bg-gradient-to-br from-gray-800 to-gray-900 text-white'      
           }`}
         onClick={(e) => e.stopPropagation()}
       >
