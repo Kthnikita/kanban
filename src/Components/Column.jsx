@@ -1,17 +1,23 @@
 import { Draggable, Droppable } from '@hello-pangea/dnd';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Editmodal from './Editmodal';
 import { NotePencil } from 'phosphor-react';
 import {FlowerLotus} from 'phosphor-react'
 import { Trash } from 'phosphor-react';
 import { deletetask } from './taskslice';
+import Addtaskmodal from './Addtaskmodal';
+import {Plus} from 'phosphor-react'
 function Column({ colkey, modal, edit }) {
+  const [taskmodal, settaskmodal] = useState(false);
   const task = useSelector(store => store.app.column[colkey]);
   const isdark = useSelector(store => store.app.isdark);
   const dispatch=useDispatch();
   function remove(id){
    dispatch(deletetask({colkey,taskid:id}))
+  }
+    function toggel() {
+    settaskmodal(!taskmodal);
   }
   return (
     <div
@@ -113,7 +119,24 @@ function Column({ colkey, modal, edit }) {
           </>
         )}
       </Droppable>
+       {taskmodal && <Addtaskmodal toggel={toggel} />}
       {edit && <Editmodal editkey={edit} modal={modal} col={colkey} />}
+     <div className='flex justify-center items-center'>
+       <button
+         className={`focus:outline-none transition-colors duration-200 mt-4 ${
+                              isdark
+                                ? 'text-gray-500 hover:text-pink-500'
+                                : 'text-gray-300 hover:text-pink-400'
+                            }`}
+                            aria-label="Add Task"
+                            title="Add Task"
+          onClick={toggel}
+        >
+          <Plus size={20} weight='bold' />
+
+
+        </button>
+     </div>
     </div>
   );
 }
