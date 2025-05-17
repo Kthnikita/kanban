@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Switch from "./ui/Switch";
+import { Switch } from "@/Components/ui/Switch";
 import { Sun, Moon } from 'phosphor-react';
 import { handeltheme } from './taskslice';
 import { useEffect } from 'react';
